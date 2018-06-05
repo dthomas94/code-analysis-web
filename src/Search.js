@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Search = (props) => (
-  <input type='text' onChange={props.onChange}/>
+const Search = ({onChange}) => (
+  <input type='text' onChange={onChange}/>
 );
 
 export default Search;
