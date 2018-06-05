@@ -22,10 +22,11 @@ class App extends PureComponent {
 
     componentDidMount() {
         getPersonList().then((personList) => {
-                /*this.setState({
+            console.log(personList)
+                this.setState({
                     personList,
                     visiblePersonList: personList
-                });*/
+                });
             }
         );
     }
@@ -93,7 +94,6 @@ class App extends PureComponent {
     }
 
     render() {
-        const { visiblePersonList } = this.state;
         return (
         <div className='app-container'>
             <Search
@@ -104,8 +104,8 @@ class App extends PureComponent {
             <button key='sort-first' onClick={this._sortByFirst}>Sort (First Name)</button>
             <button key='sort-last' onClick={this._sortByLast}>Sort (Last Name)</button>
             <ListContainer
-            key='list'
-            personList={visiblePersonList}
+                key='list'
+                personList={this.state.visiblePersonList}
             />
         </div>
         );
