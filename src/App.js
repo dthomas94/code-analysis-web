@@ -22,7 +22,6 @@ class App extends PureComponent {
 
     componentDidMount() {
         getPersonList().then((personList) => {
-            console.log(personList)
                 this.setState({
                     personList,
                     visiblePersonList: personList

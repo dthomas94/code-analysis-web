@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ListRow = (props) => {
-  const firstName = props.children.firstName;
-  const lastName = props.children.lastName;
-  const imgSrc = props.children.headshot.url;
+const ListRow = ({children}) => {
+  const firstName = children.firstName;
+  const lastName = children.lastName;
+  const imgSrc = children.headshot.url;
 
   return (
     <tr key={`${firstName} ${lastName}`}>
