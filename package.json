@@ -1,0 +1,8 @@
+{
+  "name": "code-analysis-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:dthomas94/code-analysis-web.git",
+  "author": "dthomas94 <danielle.thomas313@gmail.com>",
+  "license": "MIT",
+}

@@ -1,30 +1,26 @@
-
-
-        const App = React.createClass({
-            getInitialState() {
-                return {
-                    personList: [],
-                    visiblePersonList: []
-                };
-            },
-
-            componentDidMount() {
-                getPersonList().then((personList) =>
-                    this.setState({
-                        personList,
-                        visiblePersonList: personList
-                    }));
-            },
-
-             /**
-       * Remove any people that do not have the name we are
-       * searching for.
-       */
-      function filterByName(searchForName, personList) {
-        return personList.filter((person) => {
-            return person.firstName === searchForName || person.lastName === searchForName;
-        });
+class App extends PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      personList: [],
+      visiblePersonList: [],
     }
+  }
+
+  componentDidMount() {
+    getPersonList().then((personList) =>
+      this.setState({
+          personList,
+          visiblePersonList: personList
+      })
+    );
+  }
+
+  function filterByName(searchForName, personList) {
+    return personList.filter((person) => {
+        return person.firstName === searchForName || person.lastName === searchForName;
+    });
+  }
 
             /**
        * Takes in a property of an object list, e.g. "name" below
@@ -86,49 +82,49 @@
         return result;
     }
 
-            _shuffleList() {
-                this.setState({
-                    visiblePersonList: shuffleList(this.state.personList)
-                });
-            },
+  _shuffleList() {
+      this.setState({
+          visiblePersonList: shuffleList(this.state.personList)
+      });
+  },
 
-            _sortByFirst() {
-                this.setState({
-                    visiblePersonList: sortByFirstName(this.state.personList)
-                });
-            },
+  _sortByFirst() {
+      this.setState({
+          visiblePersonList: sortByFirstName(this.state.personList)
+      });
+  },
 
-            _sortByLast() {
-                this.setState({
-                    visiblePersonList: sortByLastName(this.state.personList)
-                });
-            },
+  _sortByLast() {
+      this.setState({
+          visiblePersonList: sortByLastName(this.state.personList)
+      });
+  },
 
-            _onSearch(e) {
-                this.setState({
-                    visiblePersonList: filterByName(e.target.value, this.state.personList)
-                });
-            },
+  _onSearch(e) {
+      this.setState({
+          visiblePersonList: filterByName(e.target.value, this.state.personList)
+      });
+  },
 
-            render() {
-              const { visiblePersonList } = this.state;
-              return (
-                <div className='app-container'>
-                  <Search
-                    key='search'
-                    onChange={this._onSearch}
-                  />
-                  <button key='shuffle' onClick={this._shuffleList}>Shuffle</button>
-                  <button key='sort-first' onClick={this._sortByFirst}>Sort (First Name)</button>
-                  <button key='sort-last' onClick={this._sortByLast}>Sort (Last Name)</button>
-                  <ListContainer
-                    key='list'
-                    personList={visiblePersonList}
-                  />
-                </div>
-              );
-            }
-        });
+  render() {
+    const { visiblePersonList } = this.state;
+    return (
+      <div className='app-container'>
+        <Search
+          key='search'
+          onChange={this._onSearch}
+        />
+        <button key='shuffle' onClick={this._shuffleList}>Shuffle</button>
+        <button key='sort-first' onClick={this._sortByFirst}>Sort (First Name)</button>
+        <button key='sort-last' onClick={this._sortByLast}>Sort (Last Name)</button>
+        <ListContainer
+          key='list'
+          personList={visiblePersonList}
+        />
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(
     <App/>,

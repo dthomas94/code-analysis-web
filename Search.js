@@ -1,4 +1,5 @@
-const Search = (props) => React.DOM.input({
-  type: 'input',
-  onChange: props.onChange
-});
+const Search = (props) => (
+  <input type='text' onChange={props.onChange}/>
+);
+
+export default Search;
