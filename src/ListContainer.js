@@ -1,6 +1,7 @@
+import React from 'react';
 import ListRow from './ListRow';
 
-const ListContainer = (props) => {
+const ListContainer = (props) => (
     <table className='list-container'>
         <thead>
             <tr>
@@ -17,6 +18,6 @@ const ListContainer = (props) => {
             }
         </tbody>
     </table>
-}
+);
 
 export default ListContainer;
