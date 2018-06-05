@@ -2,6 +2,7 @@ import Search  from './Search';
 import ListContainer from './ListContainer';
 import React, { PureComponent } from 'react';
 import getPersonList  from './api';
+import _ from 'lodash';
 
 class App extends PureComponent {
     constructor() {
@@ -10,8 +11,6 @@ class App extends PureComponent {
             personList: [],
             visiblePersonList: [],
         };
-        this._sortByFirstName = this._sortObjListByProp('firstName');
-        this._sortByLastName = (personList) => this._sortByFirstName(personList).reverse();
         this._filterByName = this._filterByName.bind(this);
         this._sortObjListByProp = this._sortObjListByProp.bind(this);
         this._shuffleList = this._shuffleList.bind(this);
@@ -38,7 +37,6 @@ class App extends PureComponent {
 
     _sortObjListByProp(prop) {
         return function(objList) {
-            // Make a copy & don't mutate the passed in list
             let result = objList.slice(1);
 
             result.sort((a, b) => {
@@ -58,31 +56,20 @@ class App extends PureComponent {
     }
 
     _shuffleList() {
-        let result = this.state.personList.slice(1);
-
-        let tmp, j, i = result.length - 1
-
-        for (; i > 0; i -= 1) {
-            j = Math.floor(Math.random() * (i + 1));
-            tmp = result[i];
-            result[i] = result[j];
-            result[j] = tmp;
-        }
-
         this.setState({
-            visiblePersonList: result
+            visiblePersonList: _.shuffle(this.state.personList)
         });
     }
 
     _sortByFirst() {
         this.setState({
-            visiblePersonList: this._sortByFirstName(this.state.personList)
+            visiblePersonList: _.sortBy(this.state.personList, 'firstName')
         });
     }
 
     _sortByLast() {
         this.setState({
-            visiblePersonList: this._sortByLastName(this.state.personList)
+            visiblePersonList: _.sortBy(this.state.personList, 'lastName')
         });
     }
 
