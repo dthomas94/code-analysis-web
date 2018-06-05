@@ -31,7 +31,7 @@ class App extends PureComponent {
 
     _filterByName(searchForName, personList) {
         return personList.filter((person) => {
-            return person.firstName === searchForName || person.lastName === searchForName;
+            return person.firstName === _.capitalize(searchForName) || person.lastName === _.capitalize(searchForName);
         });
     }
 
